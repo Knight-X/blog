@@ -12,9 +12,6 @@ env:
 before_script:
     - composer self-update
     - composer install --prefer-source --no-interaction --dev
-    - sudo apt-get install -y mcrypt php5-mcrypt
-    - php5enmod mcrypt
-    - php artisan key:generate
 
 script: vendor/bin/phpunit
 
