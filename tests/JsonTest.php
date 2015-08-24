@@ -13,8 +13,6 @@ class JsonTest extends TestCase
     public function testBasicExample()
 	{
 		$this->get('/post/1')
-			->seeJson([
-				'x' => 3
-			]);
+			->seeJson();
 	}
 }
