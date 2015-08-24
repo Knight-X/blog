@@ -14,9 +14,6 @@ class JsonTest extends TestCase
 	{
 		$this->get('/post/1')
 			->seeJson([
-				'result' => [
-					'user' => 1
-				],
 				'x' => 3
 			]);
 	}
