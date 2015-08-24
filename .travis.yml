@@ -1,0 +1,30 @@
+language: php
+php:
+    - 5.4
+    - 5.5
+    - 5.6
+    - hhvm
+    - nightly
+env:
+    global:
+        - setup=basic
+
+before_script:
+    - composer self-update
+    - composer install --prefer-source --no-interaction --dev
+
+script: vendor/bin/phpunit
+
+matrix:
+    fast_finish: true
+    allow_failuers:
+        - php: 5.6
+        - php: hhvm
+install:
+    - if [[ $setup = 'basic' ]]; then travis_retry composer install --no-interaction --prefer-source; fi
+    - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-stable; fi
+    - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-source --no-interaction --prefer-lowest --prefer-stable; fi
+
+notifications:
+    on_success: never
+    on_failure: always
